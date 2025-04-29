@@ -2,10 +2,13 @@ import { useState } from "react";
 
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Banner from "./components/Banner";
+
+import HeroSection from "./components/Banner";
+import Card from "./components/card";
 
 function App() {
-  const [count, setCount] = useState(10);
+  const [count, setCount] = useState(0);
+  const [name, setName] = useState("Devraj");
 
   const handleIncrement = () => {
     setCount(count + 5);
@@ -17,17 +20,23 @@ function App() {
   const handleMultiplication = () => {
     setCount(count * 5);
   };
+  const handleChangeName = () => {
+    setName("Sagar");
+  };
 
   return (
     <>
       <Navbar />
-      <Banner />
+      <HeroSection />
+      <Card />
       <div className="container mt-5">
         <button onClick={handleIncrement}>click me to increase</button>
         <button onClick={handleDecrement}>click me to decrease</button>
         <button onClick={handleMultiplication}>click me to multiply</button>
+        <button onClick={handleChangeName}> Change name</button>
 
         <p>you click {count} time in click me button</p>
+        <p>click the change name button to change name : {name} </p>
       </div>
       <div className="container">
         <h4>Welcome back to login page</h4>
