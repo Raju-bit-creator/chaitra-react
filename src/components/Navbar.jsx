@@ -1,12 +1,14 @@
 import React from "react";
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav
+        className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`} //template literal
+      >
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            Navbar
+            {props.brandName}
           </a>
           <button
             className="navbar-toggler"
@@ -81,9 +83,14 @@ const Navbar = () => {
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
+              <div className="toggle-button">
+                <button
+                  onClick={props.toggleMode}
+                  className="btn btn-outline-success"
+                >
+                  {props.text}
+                </button>
+              </div>
             </form>
           </div>
         </div>

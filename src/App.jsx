@@ -7,40 +7,33 @@ import HeroSection from "./components/Banner";
 import Card from "./components/card";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [name, setName] = useState("Devraj");
+  const [text, setText] = useState("dark mode");
+  const [mode, setMode] = useState("dark");
 
-  const handleIncrement = () => {
-    setCount(count + 5);
+  const toggleMode = () => {
+    if (mode == "dark") {
+      setMode("light");
+      setText("dark mode");
+    } else {
+      setMode("dark");
+
+      setText("light mode");
+    }
   };
 
-  const handleDecrement = () => {
-    setCount(count - 5);
-  };
-  const handleMultiplication = () => {
-    setCount(count * 5);
-  };
-  const handleChangeName = () => {
-    setName("Sagar");
-  };
+  let brandName = "Hamro-bazzar";
 
   return (
     <>
-      <Navbar />
+      <Navbar
+        mode={mode}
+        text={text}
+        brandName={brandName}
+        toggleMode={toggleMode}
+      />{" "}
+      {/* //passing mode as props */}
       <HeroSection />
-      <Card />
-      <div className="container mt-5">
-        <button onClick={handleIncrement}>click me to increase</button>
-        <button onClick={handleDecrement}>click me to decrease</button>
-        <button onClick={handleMultiplication}>click me to multiply</button>
-        <button onClick={handleChangeName}> Change name</button>
-
-        <p>you click {count} time in click me button</p>
-        <p>click the change name button to change name : {name} </p>
-      </div>
-      <div className="container">
-        <h4>Welcome back to login page</h4>
-      </div>
+      <Card toggleMode={toggleMode} mode={mode} />
     </>
   );
 }
