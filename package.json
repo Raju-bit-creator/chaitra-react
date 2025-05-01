@@ -13,7 +13,8 @@
     "@splidejs/splide": "^4.1.4",
     "chaitra-project": "file:",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-toastify": "^11.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
