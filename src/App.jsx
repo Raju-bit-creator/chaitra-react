@@ -7,6 +7,8 @@ import HeroSection from "./components/Banner";
 import Card from "./components/card";
 import Alert from "./components/Alert";
 import { toast, ToastContainer } from "react-toastify";
+import Class from "./components/Class";
+import Function from "./components/Function";
 
 function App() {
   const [text, setText] = useState("dark mode");
@@ -65,6 +67,8 @@ function App() {
       <Alert alert={alert} />
       {/* //passing mode as props */}
       <HeroSection />
+      <Class />
+      <Function />
       <Card mode={mode} />
     </>
   );
