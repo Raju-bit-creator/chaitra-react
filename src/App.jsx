@@ -9,6 +9,12 @@ import Alert from "./components/Alert";
 import { toast, ToastContainer } from "react-toastify";
 import Class from "./components/Class";
 import Function from "./components/Function";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import About from "./components/About";
+import Footer from "./components/layout/Footer";
+import Home from "./components/Home";
+import Contact from "./components/contact";
 
 function App() {
   const [text, setText] = useState("dark mode");
@@ -44,32 +50,40 @@ function App() {
 
   return (
     <>
-      <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        // transition={Bounce}
-      />
-      <Navbar
-        mode={mode}
-        text={text}
-        brandName={brandName}
-        toggleMode={toggleMode}
-        alert={alert}
-      />{" "}
-      <Alert alert={alert} />
-      {/* //passing mode as props */}
-      <HeroSection />
-      <Class />
-      <Function />
-      <Card mode={mode} />
+      <Router>
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          // transition={Bounce}
+        />
+        <Navbar
+          mode={mode}
+          text={text}
+          brandName={brandName}
+          toggleMode={toggleMode}
+          alert={alert}
+        />{" "}
+        <Alert alert={alert} />
+        {/* //passing mode as props */}
+        {/* <HeroSection /> */}
+        {/* <Class />
+        <Function />
+        <Card mode={mode} /> */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about-us" element={<About />} />
+          <Route path="/contact-us" element={<Contact />} />
+        </Routes>
+        <Footer />
+      </Router>
     </>
   );
 }
