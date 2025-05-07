@@ -17,6 +17,8 @@ import Home from "./components/Home";
 import Contact from "./components/contact";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Userlist from "./components/Userlist";
+import Userdetail from "./components/Userdetail";
 
 function App() {
   const [text, setText] = useState("dark mode");
@@ -85,6 +87,8 @@ function App() {
           <Route path="/contact-us" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/users" element={<Userlist />} />
+          <Route path="/:userId/:userName" element={<Userdetail />} />
         </Routes>
         <Footer />
       </Router>

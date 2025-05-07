@@ -3,6 +3,7 @@ import image from "../assets/img.jpg";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
+  const [text, setText] = React.useState("text");
   return (
     <div className="container mt-4">
       <div className="row">
@@ -39,6 +40,7 @@ const Signup = () => {
             </label>
             <input
               type="password"
+              // type= text?icolse icon: eye open icon
               className="form-control"
               id="exampleFormControlInput1"
               placeholder="Enter your password"

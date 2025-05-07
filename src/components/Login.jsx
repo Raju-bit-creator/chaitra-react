@@ -1,10 +1,15 @@
 import React from "react";
 import image from "../assets/img.jpg";
 import { Link } from "react-router-dom";
+import { FaEyeSlash } from "react-icons/fa6";
+import { IoEye } from "react-icons/io5";
 
 const Login = () => {
   return (
     <div className="container mt-4">
+      <h3>
+        Lets go for a <FaEyeSlash /> <IoEye />
+      </h3>
       <div className="row">
         <div className="col-md-6">
           <img src={image} alt="form image" />
