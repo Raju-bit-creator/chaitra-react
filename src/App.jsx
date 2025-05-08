@@ -19,6 +19,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Userlist from "./components/Userlist";
 import Userdetail from "./components/Userdetail";
+import ProductState from "./context/ProductState";
 
 function App() {
   const [text, setText] = useState("dark mode");
@@ -54,44 +55,46 @@ function App() {
 
   return (
     <>
-      <Router>
-        <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          // transition={Bounce}
-        />
-        <Navbar
-          mode={mode}
-          text={text}
-          brandName={brandName}
-          toggleMode={toggleMode}
-          alert={alert}
-        />{" "}
-        <Alert alert={alert} />
-        {/* //passing mode as props */}
-        {/* <HeroSection /> */}
-        {/* <Class />
+      <ProductState>
+        <Router>
+          <ToastContainer
+            position="top-center"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            // transition={Bounce}
+          />
+          <Navbar
+            mode={mode}
+            text={text}
+            brandName={brandName}
+            toggleMode={toggleMode}
+            alert={alert}
+          />{" "}
+          <Alert alert={alert} />
+          {/* //passing mode as props */}
+          {/* <HeroSection /> */}
+          {/* <Class />
         <Function />
         <Card mode={mode} /> */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about-us" element={<About />} />
-          <Route path="/contact-us" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/users" element={<Userlist />} />
-          <Route path="/:userId/:userName" element={<Userdetail />} />
-        </Routes>
-        <Footer />
-      </Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about-us" element={<About />} />
+            <Route path="/contact-us" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/users" element={<Userlist />} />
+            <Route path="/:userId/:userName/:course" element={<Userdetail />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </ProductState>
     </>
   );
 }
