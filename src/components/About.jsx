@@ -5,28 +5,30 @@ import img from "../assets/img.jpg";
 
 const About = () => {
   const context = useContext(productContext);
-  const { title, price, description } = context; //destructuring
-  console.log("fruit name is ", description);
+  const { products } = context; //destructuring
+  // console.log("fruit name is ", description);
 
   return (
     <div className="container">
       <div className="row">
-        this is about page
-        <h4>this is product for contexts {title}</h4>
-        <h2>Our product</h2>
-        <div className="col-md-4">
-          <div className="card">
-            <img src={img} className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">{title}</h5>
-              <p className="card-text">{description}</p>
-              <p>Price: Rs{price}</p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
+        <h2 className="our-prod">Our product form context</h2>
+        {products.map((prod) => {
+          return (
+            <div className="col-md-3">
+              <div key={prod._id} className="card">
+                <img src={img} className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">{prod.title}</h5>
+                  <p className="card-text">{prod.description}</p>
+                  <p>Price: Rs{prod.price}</p>
+                  <a href="#" className="btn btn-primary">
+                    Go somewhere
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          );
+        })}
         <Card />
       </div>
     </div>

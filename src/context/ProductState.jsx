@@ -2,11 +2,11 @@ import React from "react";
 import ProductContext from "./ProductContext";
 
 const ProductState = (props) => {
-  const product = {
-    title: "apple",
-    price: 100,
-    description: "This is an apple from mustang",
-  };
+  // const product = {
+  //   title: "apple",
+  //   price: 100,
+  //   description: "This is an apple from mustang123",
+  // };
 
   const products = [
     {
@@ -39,7 +39,7 @@ const ProductState = (props) => {
     },
   ];
   return (
-    <ProductContext.Provider value={product}>
+    <ProductContext.Provider value={{ products }}>
       {props.children}
     </ProductContext.Provider>
   );

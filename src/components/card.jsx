@@ -27,7 +27,7 @@ const Card = (props) => {
     <>
       <div className={`container  bg-${props.mode}  mt-5`}>
         <div className="row">
-          <div className="title-content"> Our Services</div>
+          <div className="title-content"> Our Services from card</div>
           {cardItems.map((item) => {
             return (
               <div key={item.title} className="col-md-4">
