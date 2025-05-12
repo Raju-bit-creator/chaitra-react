@@ -10,8 +10,18 @@ const Signup = () => {
   });
   console.log("this is credential name", credential.name);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const { name, email, password } = credential;
+    const response = await fetch("http://localhost:5000/api", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, password }),
+    });
+    const data = await response.json();
+    console.log(data);
     console.log(" signup form submitted");
   };
   const handleChange = (e) => {

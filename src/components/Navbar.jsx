@@ -1,4 +1,5 @@
 import React from "react";
+import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
@@ -86,17 +87,16 @@ const Navbar = (props) => {
                   </li>
                 </ul>
               </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link disabled"
-                  href="#"
-                  tabIndex="-1"
-                  aria-disabled="true"
-                >
-                  Disabled
-                </a>
-              </li>
             </ul>
+            <button
+              type="button"
+              className="btn btn-primary position-relative mx-4"
+            >
+              <FaShoppingCart />
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                0
+              </span>
+            </button>
             <form className="d-flex">
               <input
                 className="form-control me-2"

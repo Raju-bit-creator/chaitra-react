@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ProductContext from "./ProductContext";
 
 const ProductState = (props) => {
@@ -38,8 +38,15 @@ const ProductState = (props) => {
       instock: 10,
     },
   ];
+  const [user, setUser] = useState("");
+  const fetchUser = async () => {
+    let response = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+    let User = await response.json();
+    console.log("this jsonplace user", User);
+    setUser(User);
+  };
   return (
-    <ProductContext.Provider value={{ products }}>
+    <ProductContext.Provider value={{ products, fetchUser, user }}>
       {props.children}
     </ProductContext.Provider>
   );
