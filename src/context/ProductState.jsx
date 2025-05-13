@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import ProductContext from "./ProductContext";
+import { cartReducer } from "./Reducer";
 
 const ProductState = (props) => {
   // const product = {
@@ -38,6 +39,13 @@ const ProductState = (props) => {
       instock: 10,
     },
   ];
+  const [product, setProducts] = useState(products);
+
+  const [state, dispatch] = useReducer(cartReducer, {
+    products: product,
+    cart: [],
+  });
+
   const [user, setUser] = useState("");
   const fetchUser = async () => {
     let response = await fetch("https://jsonplaceholder.typicode.com/todos/1");
@@ -46,7 +54,9 @@ const ProductState = (props) => {
     setUser(User);
   };
   return (
-    <ProductContext.Provider value={{ products, fetchUser, user }}>
+    <ProductContext.Provider
+      value={{ product, fetchUser, user, state, dispatch }}
+    >
       {props.children}
     </ProductContext.Provider>
   );

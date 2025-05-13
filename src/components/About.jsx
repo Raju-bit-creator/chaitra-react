@@ -5,8 +5,15 @@ import img from "../assets/img.jpg";
 
 const About = () => {
   const context = useContext(productContext);
-  const { products, fetchUser, user } = context; //destructuring
-  // console.log("fruit name is ", description);
+  const {
+    state: { cart, products },
+    dispatch,
+    product,
+    fetchUser,
+    user,
+  } = context; //destructuring
+  // console.log("our porduct from reducer state ", products);
+  console.log("our cart from reducer state ", cart);
   useEffect(() => {
     fetchUser();
   }, []);
@@ -16,26 +23,46 @@ const About = () => {
       <div className="row">
         <h2 className="our-prod">Our product form context</h2>
         <h2 className="our-prod">Our user form context {user.title}</h2>
-        {products.map((prod) => {
-          return (
-            <div key={prod._id} className="col-md-3">
-              <div className="card">
-                <img src={img} className="card-img-top" alt="..." />
-                <div className="card-body">
-                  <h5 className="card-title">{prod.title}</h5>
-                  <p className="card-text">{prod.description}</p>
-                  <p>Price: Rs{prod.price}</p>
-                  <a href="#" className="btn btn-primary">
-                    Add to cart
-                  </a>
-                  <button className="btn btn-danger mx-2">
-                    Remove form cart
-                  </button>
+        {product &&
+          products.map((item) => {
+            return (
+              <div key={item._id} className="col-md-3">
+                <div className="card">
+                  <img src={img} className="card-img-top" alt="..." />
+                  <div className="card-body">
+                    <h5 className="card-title">{item.title}</h5>
+                    <p className="card-text">{item.description}</p>
+                    <p>Price: Rs{item.price}</p>
+                    {cart && cart.some((p) => p._id === item._id) ? (
+                      <button
+                        onClick={() => {
+                          dispatch({
+                            type: "REMOVE_FROM_CART",
+                            payload: item,
+                          });
+                        }}
+                        className="btn btn-danger mx-2"
+                      >
+                        Remove form cart
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          dispatch({
+                            type: "ADD_TO_CART",
+                            payload: item,
+                          });
+                        }}
+                        className="btn btn-primary mx-2"
+                      >
+                        Add to cart
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
         <Card />
       </div>
     </div>
