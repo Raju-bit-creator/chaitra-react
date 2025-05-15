@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import Card from "./card";
 import productContext from "../context/ProductContext";
 import img from "../assets/img.jpg";
+import Articles from "./Articles";
 
 const About = () => {
   const context = useContext(productContext);
@@ -9,20 +10,22 @@ const About = () => {
     state: { cart, products },
     dispatch,
     product,
-    fetchUser,
-    user,
+    articles,
+    fetchData,
   } = context; //destructuring
   // console.log("our porduct from reducer state ", products);
   console.log("our cart from reducer state ", cart);
+  console.log("articles ", articles);
+
   useEffect(() => {
-    fetchUser();
+    fetchData();
   }, []);
 
   return (
     <div className="container">
       <div className="row">
         <h2 className="our-prod">Our product form context</h2>
-        <h2 className="our-prod">Our user form context {user.title}</h2>
+        <h2 className="our-prod">Our user form context </h2>
         {product &&
           products.map((item) => {
             return (
@@ -64,6 +67,7 @@ const About = () => {
             );
           })}
         <Card />
+        <Articles articles={articles} />
       </div>
     </div>
   );

@@ -40,22 +40,29 @@ const ProductState = (props) => {
     },
   ];
   const [product, setProducts] = useState(products);
+  const [articles, setArticels] = useState([]);
 
   const [state, dispatch] = useReducer(cartReducer, {
     products: product,
     cart: [],
   });
 
-  const [user, setUser] = useState("");
-  const fetchUser = async () => {
-    let response = await fetch("https://jsonplaceholder.typicode.com/todos/1");
-    let User = await response.json();
-    console.log("this jsonplace user", User);
-    setUser(User);
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        "https://newsapi.org/v2/top-headlines?country=us&apiKey=d125d26fbc6d49728775e0b977bddc5a"
+      );
+      const data = await response.json();
+      setArticels(data.articles);
+      console.log("data from news api", data.articles);
+    } catch (error) {
+      console.log("fetching error", error);
+    }
   };
+
   return (
     <ProductContext.Provider
-      value={{ product, fetchUser, user, state, dispatch }}
+      value={{ product, articles, fetchData, state, dispatch }}
     >
       {props.children}
     </ProductContext.Provider>
