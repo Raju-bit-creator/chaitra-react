@@ -20,6 +20,7 @@ import Signup from "./components/Signup";
 import Userlist from "./components/Userlist";
 import Userdetail from "./components/Userdetail";
 import ProductState from "./context/ProductState";
+import CartItems from "./components/CartItems";
 
 function App() {
   const [text, setText] = useState("dark mode");
@@ -91,6 +92,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/users" element={<Userlist />} />
             <Route path="/:userId/:userName/:course" element={<Userdetail />} />
+            <Route path="/cart-items" element={<CartItems />} />
           </Routes>
           <Footer />
         </Router>

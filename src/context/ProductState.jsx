@@ -22,7 +22,7 @@ const ProductState = (props) => {
       title: "mango",
       description: "this is good product from terai",
       price: 300,
-      instock: 5,
+      instock: 7,
     },
     {
       _id: 3,

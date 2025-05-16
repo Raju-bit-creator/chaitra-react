@@ -93,15 +93,17 @@ const Navbar = (props) => {
                 </ul>
               </li>
             </ul>
-            <button
-              type="button"
-              className="btn btn-primary position-relative mx-4"
-            >
-              <FaShoppingCart />
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                {cart.length}
-              </span>
-            </button>
+            <Link to="/cart-items">
+              <button
+                type="button"
+                className="btn btn-primary position-relative mx-4"
+              >
+                <FaShoppingCart />
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {cart.length}
+                </span>
+              </button>
+            </Link>
             <form className="d-flex">
               <input
                 className="form-control me-2"
