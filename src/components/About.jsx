@@ -67,7 +67,7 @@ const About = () => {
             );
           })}
         <Card />
-        <Articles articles={articles} />
+        {/* <Articles articles={articles} /> */}
       </div>
     </div>
   );

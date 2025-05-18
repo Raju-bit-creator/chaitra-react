@@ -11,10 +11,10 @@ const CartItems = () => {
   } = context;
   //   console.log("this is cart item cart", cart);
 
-  return (
-    <div className="container">
-      <h4>this is cart items</h4>
+  const Total = cart.reduce((acc, cur) => acc + cur.price * cur.qty, 0);
 
+  return (
+    <div className="container cart-main">
       <div className="product-container">
         <ul>
           {cart &&
@@ -75,6 +75,11 @@ const CartItems = () => {
               );
             })}
         </ul>
+      </div>
+      <div className="summary">
+        <div className="title">Total items: {cart.length}</div>
+        <h4>Sub total: Rs. {Total}</h4>
+        <button className="btn btn-primary">Proceed to checkout</button>
       </div>
     </div>
   );
