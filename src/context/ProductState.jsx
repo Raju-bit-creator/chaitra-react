@@ -40,30 +40,44 @@ const ProductState = (props) => {
     },
   ];
   const [product, setProducts] = useState(products);
-  const [articles, setArticels] = useState([]);
+  // const [articles, setArticels] = useState([]);
 
   const [state, dispatch] = useReducer(cartReducer, {
     products: product,
     cart: [],
   });
 
-  const fetchData = async () => {
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       "https://newsapi.org/v2/top-headlines?country=us&apiKey=d125d26fbc6d49728775e0b977bddc5a"
+  //     );
+  //     const data = await response.json();
+  //     setArticels(data.articles);
+  //     console.log("data from news api", data.articles);
+  //   } catch (error) {
+  //     console.log("fetching error", error);
+  //   }
+  // };
+  const allProduct = async () => {
     try {
-      const response = await fetch(
-        "https://newsapi.org/v2/top-headlines?country=us&apiKey=d125d26fbc6d49728775e0b977bddc5a"
-      );
-      const data = await response.json();
-      setArticels(data.articles);
-      console.log("data from news api", data.articles);
+      const resposne = await fetch("https://fakestoreapi.com/products", {
+        method: "GET", //read
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": "mytoken",
+        },
+      });
+      const data = await resposne.json();
+      setProducts(data);
+      console.log("data from fake store api", data);
     } catch (error) {
-      console.log("fetching error", error);
+      res.status(500).send("internal server error");
     }
   };
 
   return (
-    <ProductContext.Provider
-      value={{ product, articles, fetchData, state, dispatch }}
-    >
+    <ProductContext.Provider value={{ product, allProduct, state, dispatch }}>
       {props.children}
     </ProductContext.Provider>
   );

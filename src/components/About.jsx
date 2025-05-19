@@ -10,15 +10,14 @@ const About = () => {
     state: { cart, products },
     dispatch,
     product,
-    articles,
-    fetchData,
+    allProduct,
   } = context; //destructuring
   // console.log("our porduct from reducer state ", products);
   console.log("our cart from reducer state ", cart);
-  console.log("articles ", articles);
+  console.log("our product from fake api ", product);
 
   useEffect(() => {
-    fetchData();
+    allProduct();
   }, []);
 
   return (

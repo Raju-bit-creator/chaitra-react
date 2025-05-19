@@ -21,6 +21,7 @@ import Userlist from "./components/Userlist";
 import Userdetail from "./components/Userdetail";
 import ProductState from "./context/ProductState";
 import CartItems from "./components/CartItems";
+import AddProduct from "./components/AddProduct";
 
 function App() {
   const [text, setText] = useState("dark mode");
@@ -93,6 +94,7 @@ function App() {
             <Route path="/users" element={<Userlist />} />
             <Route path="/:userId/:userName/:course" element={<Userdetail />} />
             <Route path="/cart-items" element={<CartItems />} />
+            <Route path="/add-product" element={<AddProduct />} />
           </Routes>
           <Footer />
         </Router>
