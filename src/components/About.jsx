@@ -3,6 +3,7 @@ import Card from "./card";
 import productContext from "../context/ProductContext";
 import img from "../assets/img.jpg";
 import Articles from "./Articles";
+import { BsThreeDots } from "react-icons/bs";
 
 const About = () => {
   const context = useContext(productContext);
@@ -11,6 +12,7 @@ const About = () => {
     dispatch,
     product,
     allProduct,
+    editProduct,
   } = context; //destructuring
   // console.log("our porduct from reducer state ", products);
   console.log("our cart from reducer state ", cart);
@@ -32,7 +34,10 @@ const About = () => {
                 <div className="card">
                   <img src={img} className="card-img-top" alt="..." />
                   <div className="card-body">
-                    <h5 className="card-title">{item.title}</h5>
+                    <div className="icon-title">
+                      <h5 className="card-title">{item.title}</h5>
+                      <BsThreeDots />
+                    </div>
                     <p className="card-text">{item.description}</p>
                     <p>Price: Rs{item.price}</p>
                     {cart && cart.some((p) => p._id === item._id) ? (

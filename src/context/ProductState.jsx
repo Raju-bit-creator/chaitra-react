@@ -76,8 +76,34 @@ const ProductState = (props) => {
     }
   };
 
+  //edit product
+  const editProduct = async (id, updateData) => {
+    const { title, description, price, instock } = updateData;
+    try {
+      const resposne = await fetch(
+        `https://fakestoreapi.com/products/updateproduct/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": "mytoken",
+          },
+          body: JSON.stringify({ title, description, price, instock }),
+        }
+      );
+      if (!resposne.ok) {
+        throw new Error("Failed to update product");
+      }
+      const data = await resposne.json();
+      console.log("data from fake store api", data);
+    } catch (error) {
+      console.log("error in updating product", error);
+    }
+  };
   return (
-    <ProductContext.Provider value={{ product, allProduct, state, dispatch }}>
+    <ProductContext.Provider
+      value={{ product, allProduct, editProduct, state, dispatch }}
+    >
       {props.children}
     </ProductContext.Provider>
   );

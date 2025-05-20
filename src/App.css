@@ -18,3 +18,7 @@ img {
   padding: 30px;
   border-radius: 10px;
 }
+.icon-title {
+  display: flex;
+  justify-content: space-between;
+}
