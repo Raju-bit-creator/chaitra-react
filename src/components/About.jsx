@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Card from "./card";
 import productContext from "../context/ProductContext";
 import img from "../assets/img.jpg";
@@ -13,10 +13,26 @@ const About = () => {
     product,
     allProduct,
     editProduct,
+    deleteProduct,
   } = context; //destructuring
-  // console.log("our porduct from reducer state ", products);
-  console.log("our cart from reducer state ", cart);
-  console.log("our product from fake api ", product);
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const toggleMenu = (id) => {
+    console.log("thsi is clicked id", id);
+    setMenuVisible((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
+  };
+
+  const openEditModal = (product) => {
+    console.log("edit product", product);
+  };
+  const handleDelete = (id) => {
+    console.log("deleting product", id);
+  };
 
   useEffect(() => {
     allProduct();
@@ -36,7 +52,23 @@ const About = () => {
                   <div className="card-body">
                     <div className="icon-title">
                       <h5 className="card-title">{item.title}</h5>
-                      <BsThreeDots />
+                      <BsThreeDots onClick={() => toggleMenu(item._id)} />
+                      {menuVisible[item._id] && (
+                        <div className="menu-options">
+                          <button
+                            className="btn btn-warning mx-2"
+                            onClick={() => openEditModal(item)}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className="btn btn-danger"
+                            onClick={() => handleDelete(item._id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      )}
                     </div>
                     <p className="card-text">{item.description}</p>
                     <p>Price: Rs{item.price}</p>

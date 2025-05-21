@@ -100,9 +100,36 @@ const ProductState = (props) => {
       console.log("error in updating product", error);
     }
   };
+  //delete product
+  const deleteProduct = async (id) => {
+    try {
+      const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": "mytoken",
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Failed to delete product");
+      }
+      const data = await response.json();
+      console.log("product deleted successfully", data);
+    } catch (error) {
+      console.log("error in deleting product", error);
+      throw new Error("failed to delete product");
+    }
+  };
   return (
     <ProductContext.Provider
-      value={{ product, allProduct, editProduct, state, dispatch }}
+      value={{
+        product,
+        allProduct,
+        editProduct,
+        deleteProduct,
+        state,
+        dispatch,
+      }}
     >
       {props.children}
     </ProductContext.Provider>
