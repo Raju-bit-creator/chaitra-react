@@ -4,6 +4,7 @@ import productContext from "../context/ProductContext";
 import img from "../assets/img.jpg";
 import Articles from "./Articles";
 import { BsThreeDots } from "react-icons/bs";
+import EditProductModal from "./EditProductModal";
 
 const About = () => {
   const context = useContext(productContext);
@@ -28,7 +29,17 @@ const About = () => {
   };
 
   const openEditModal = (product) => {
-    console.log("edit product", product);
+    // console.log("edit product", product);
+    setSelectedProduct(product);
+    setModalVisible(true);
+  };
+  const closeEditModal = () => {
+    setModalVisible(false);
+    setSelectedProduct(null);
+  };
+
+  const saveEdit = (updateData) => {
+    editProduct(updateData, selectedProduct._id);
   };
   const handleDelete = (id) => {
     console.log("deleting product", id);
@@ -99,14 +110,19 @@ const About = () => {
                     )}
                   </div>
                 </div>
+                {modalVisible && selectedProduct._id === item._id && (
+                  <EditProductModal
+                    product={selectedProduct}
+                    onClose={closeEditModal}
+                    onSave={saveEdit}
+                  />
+                )}
               </div>
             );
           })}
-        <Card />
-        {/* <Articles articles={articles} /> */}
       </div>
     </div>
   );
 };
 
-export default About; //
+export default About;
