@@ -41,8 +41,9 @@ const About = () => {
   const saveEdit = (updateData) => {
     editProduct(updateData, selectedProduct._id);
   };
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     console.log("deleting product", id);
+    await deleteProduct(id);
   };
 
   useEffect(() => {
@@ -54,7 +55,7 @@ const About = () => {
       <div className="row">
         <h2 className="our-prod">Our product form context</h2>
         <h2 className="our-prod">Our user form context </h2>
-        {product &&
+        {products &&
           products.map((item) => {
             return (
               <div key={item._id} className="col-md-3">

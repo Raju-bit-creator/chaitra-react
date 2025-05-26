@@ -103,13 +103,16 @@ const ProductState = (props) => {
   //delete product
   const deleteProduct = async (id) => {
     try {
-      const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": "mytoken",
-        },
-      });
+      const response = await fetch(
+        `https://fakestoreapi.com/products1111/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": "mytoken",
+          },
+        }
+      );
       if (!response.ok) {
         throw new Error("Failed to delete product");
       }
