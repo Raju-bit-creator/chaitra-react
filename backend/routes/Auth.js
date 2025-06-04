@@ -5,12 +5,14 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 const fetchUser = require("../middleware/Fetchuser");
+const Product = require("../model/Product");
 
 const secret = process.env.SECRET;
 
 router.get("/users", (req, res) => {
   res.send("all user from database");
 });
+
 router.post(
   "/createuser",
   [
