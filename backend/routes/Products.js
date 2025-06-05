@@ -61,7 +61,7 @@ router.post(
 
 router.put("/updateproduct/:id", fetchUser, async (req, res) => {
   const { title, price, description, instock } = req.body;
-  console.log("req body", req.body);
+  // console.log("req body", req.body);
 
   try {
     const newProduct = {};
@@ -83,6 +83,23 @@ router.put("/updateproduct/:id", fetchUser, async (req, res) => {
       new: true,
     });
     res.json(product);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+//delete product
+router.delete("/deleteproduct/:id", fetchUser, async (req, res) => {
+  try {
+    let product = await Product.findById(req.params.id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+    if (!product.user || product.user.toString() !== req.user.id) {
+      return res.status(401).send("unauthorized");
+    }
+    await Product.findByIdAndDelete(req.params.id);
+    res.json({ message: "Product deleted" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
