@@ -1,8 +1,9 @@
 import React from "react";
 import image from "../assets/img.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [credential, setCredential] = React.useState({
     email: "",
     password: "",
@@ -12,7 +13,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = credential;
-    const response = await fetch("http://localhost:5000/api/login", {
+    const response = await fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,6 +21,11 @@ const Login = () => {
       body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
+    if (data) {
+      localStorage.setItem("token", data.authToken);
+      navigate("/");
+    }
+
     console.log(data);
     console.log(" login form submitted");
   };

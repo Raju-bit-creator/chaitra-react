@@ -1,19 +1,20 @@
 import React from "react";
 import image from "../assets/img.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [credential, setCredential] = React.useState({
     name: "",
     email: "",
     password: "",
   });
-  console.log("this is credential name", credential.name);
+  // console.log("this is credential name", credential.name);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, password } = credential;
-    const response = await fetch("http://localhost:5000/api", {
+    const response = await fetch("http://localhost:5000/api/auth/createuser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,6 +22,9 @@ const Signup = () => {
       body: JSON.stringify({ name, email, password }),
     });
     const data = await response.json();
+    if (data.success) {
+      navigate("/login");
+    }
     console.log(data);
     console.log(" signup form submitted");
   };
