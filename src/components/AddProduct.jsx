@@ -27,7 +27,7 @@ const AddProduct = () => {
         formData,
         {
           headers: {
-            "auth-token": "2ertert3w4t4erwe",
+            "auth-token": localStorage.getItem("token"),
           },
         }
       );

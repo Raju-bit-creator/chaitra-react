@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { FaShoppingCart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import productContext from "../context/ProductContext";
 
 const Navbar = (props) => {
+  const navigate = useNavigate();
   const context = useContext(productContext);
   const {
     state: { cart },
   } = context;
+
   return (
     <div>
       <nav
@@ -45,16 +47,13 @@ const Navbar = (props) => {
                   Contact Us
                 </Link>
               </li>
+
               <li className="nav-item">
                 <Link className="nav-link" to="/login">
                   Login
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/signup">
-                  Register
-                </Link>
-              </li>
+
               <li className="nav-item">
                 <Link className="nav-link" to="/users">
                   Users

@@ -34,16 +34,22 @@ router.post(
     body("description")
       .isLength({ min: 5 })
       .withMessage("description must be atleast 5 character"),
-    body("price").isNumeric().withMessage("price must be a number"),
-    body("instock").isNumeric().withMessage("instock must be a number"),
   ],
   async (req, res) => {
+    console.log("from forntend ", req.body);
+
     try {
-      const { title, price, description, instock, image } = req.body;
+      const { title, price, description, instock } = req.body;
+
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
+      let image = req.files.map((el) => {
+        return el.filename;
+      });
+      console.log("image from forntend", image);
+
       const product = new Product({
         title,
         description,
