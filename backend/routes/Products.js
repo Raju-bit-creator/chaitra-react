@@ -36,7 +36,7 @@ router.post(
       .withMessage("description must be atleast 5 character"),
   ],
   async (req, res) => {
-    console.log("from forntend ", req.body);
+    // console.log("from forntend ", req.body);
 
     try {
       const { title, price, description, instock } = req.body;
@@ -48,7 +48,7 @@ router.post(
       let image = req.files.map((el) => {
         return el.filename;
       });
-      console.log("image from forntend", image);
+      // console.log("image from forntend", image);
 
       const product = new Product({
         title,

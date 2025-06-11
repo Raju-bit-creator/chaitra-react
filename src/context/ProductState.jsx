@@ -61,13 +61,16 @@ const ProductState = (props) => {
   // };
   const allProduct = async () => {
     try {
-      const resposne = await fetch("https://fakestoreapi.com/products", {
-        method: "GET", //read
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": "mytoken",
-        },
-      });
+      const resposne = await fetch(
+        "http://localhost:5000/api/product/getallproduct",
+        {
+          method: "GET", //read
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem("token"),
+          },
+        }
+      );
       const data = await resposne.json();
       setProducts(data);
       console.log("data from fake store api", data);
@@ -81,12 +84,12 @@ const ProductState = (props) => {
     const { title, description, price, instock } = updateData;
     try {
       const resposne = await fetch(
-        `https://fakestoreapi.com/products/updateproduct/${id}`,
+        `http://localhost:5000/api/product/updateproduct/${id}`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            "auth-token": "mytoken",
+            "auth-token": localStorage.getItem("token"),
           },
           body: JSON.stringify({ title, description, price, instock }),
         }
@@ -104,12 +107,12 @@ const ProductState = (props) => {
   const deleteProduct = async (id) => {
     try {
       const response = await fetch(
-        `https://fakestoreapi.com/products1111/${id}`,
+        `http://localhost:5000/api/product/deleteproduct/${id}`,
         {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            "auth-token": "mytoken",
+            "auth-token": localStorage.getItem("token"),
           },
         }
       );
@@ -117,6 +120,7 @@ const ProductState = (props) => {
         throw new Error("Failed to delete product");
       }
       const data = await response.json();
+      allProduct();
       console.log("product deleted successfully", data);
     } catch (error) {
       console.log("error in deleting product", error);

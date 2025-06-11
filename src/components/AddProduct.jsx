@@ -107,6 +107,7 @@ const AddProduct = () => {
           <input
             type="file"
             name="image"
+            multiple
             onChange={handleChange}
             className="form-control"
           />

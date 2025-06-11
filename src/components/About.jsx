@@ -21,8 +21,9 @@ const About = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
+  console.log("proudct from database", product);
+
   const toggleMenu = (id) => {
-    console.log("thsi is clicked id", id);
     setMenuVisible((prevState) => ({
       ...prevState,
       [id]: !prevState[id],
@@ -40,7 +41,7 @@ const About = () => {
   };
 
   const saveEdit = (updateData) => {
-    editProduct(updateData, selectedProduct._id);
+    editProduct(selectedProduct._id, updateData);
   };
   const handleDelete = async (id) => {
     console.log("deleting product", id);
@@ -60,11 +61,19 @@ const About = () => {
           <h2 className="our-prod">Our product form context</h2>
           <h2 className="our-prod">Our user form context </h2>
           {products &&
-            products.map((item) => {
+            product.map((item) => {
               return (
                 <div key={item._id} className="col-md-3">
                   <div className="card">
-                    <img src={img} className="card-img-top" alt="..." />
+                    <img
+                      src={
+                        item.image?.[0]
+                          ? `http://localhost:5000/uploads/${item.image[0]}`
+                          : img
+                      }
+                      className="card-img-top"
+                      alt={item.title}
+                    />
                     <div className="card-body">
                       <div className="icon-title">
                         <h5 className="card-title">{item.title}</h5>
