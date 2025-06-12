@@ -6,8 +6,13 @@ import Articles from "./Articles";
 import { BsThreeDots } from "react-icons/bs";
 import EditProductModal from "./EditProductModal";
 import SmallHero from "./SmallHero";
+import { useParams } from "react-router-dom";
 
 const About = () => {
+  const params = useParams();
+  const searchQuery = params;
+  console.log("search text", searchQuery);
+
   const context = useContext(productContext);
   const {
     state: { cart, products },
@@ -49,8 +54,8 @@ const About = () => {
   };
 
   useEffect(() => {
-    allProduct();
-  }, []);
+    allProduct(searchQuery);
+  }, [searchQuery]);
   const title = "About Us";
 
   return (

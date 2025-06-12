@@ -59,10 +59,10 @@ const ProductState = (props) => {
   //     console.log("fetching error", error);
   //   }
   // };
-  const allProduct = async () => {
+  const allProduct = async (searchQuery = "") => {
     try {
       const resposne = await fetch(
-        "http://localhost:5000/api/product/getallproduct",
+        `http://localhost:5000/api/product/getallproduct?searchQuery=${searchQuery}`,
         {
           method: "GET", //read
           headers: {
@@ -98,7 +98,7 @@ const ProductState = (props) => {
         throw new Error("Failed to update product");
       }
       const data = await resposne.json();
-      console.log("data from fake store api", data);
+      console.log("edit successfully", data);
     } catch (error) {
       console.log("error in updating product", error);
     }
