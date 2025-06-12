@@ -47,18 +47,6 @@ const ProductState = (props) => {
     cart: [],
   });
 
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       "https://newsapi.org/v2/top-headlines?country=us&apiKey=d125d26fbc6d49728775e0b977bddc5a"
-  //     );
-  //     const data = await response.json();
-  //     setArticels(data.articles);
-  //     console.log("data from news api", data.articles);
-  //   } catch (error) {
-  //     console.log("fetching error", error);
-  //   }
-  // };
   const allProduct = async (searchQuery = "") => {
     try {
       const resposne = await fetch(

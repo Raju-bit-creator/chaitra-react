@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import Card from "./card";
-import productContext from "../context/ProductContext";
+
 import img from "../assets/img.jpg";
 import Articles from "./Articles";
 import { BsThreeDots } from "react-icons/bs";
 import EditProductModal from "./EditProductModal";
 import SmallHero from "./SmallHero";
 import { useParams } from "react-router-dom";
+import productContext from "../context/productContext";
 
 const About = () => {
   const params = useParams();
-  const searchQuery = params;
+  const { searchQuery } = params;
   console.log("search text", searchQuery);
 
   const context = useContext(productContext);
